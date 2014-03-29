@@ -1,0 +1,8 @@
+<h1>Submitted answers</h1>
+<%= @survey.level %>
+<ul>
+<% for ans in @survey.answers %>
+   <li><%= ans.qid %> : <%= ans.ans %></li>
+</ul>
+
+

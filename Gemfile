@@ -48,3 +48,5 @@ gem 'therubyracer'
 gem 'execjs'
 
 gem 'thread_safe', '0.3.1' #0.3.0 is yanked
+
+gem "mediaelement_rails"

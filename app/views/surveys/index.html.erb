@@ -1,0 +1,11 @@
+<%= @surveys.each do |survey| %>
+   <ul>
+      <li><%=survey.level%></li>
+      <%= survey.answers.each do |answer| %>
+         <ul>
+            <li><%=answer.qid%>:<%=answer.ans%></li>
+         </ul>
+      <% end %>
+   </ul>
+<% end %>
+
