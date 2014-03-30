@@ -1,14 +1,19 @@
 class SurveysController < ApplicationController
    def new
-      totalQCount= 20
+      p1TotalQCount= 20
+      #p2TotalQCount= 20
       qCount = 5
-      @ids = (1..totalQCount).to_a.sample(qCount)
+      @p1_ids = (1..p1TotalQCount).to_a.sample(qCount) #0~1000 reserved fo part 1
+      #@p2_ids = (1001..1000+p2TotalQCount).to_a.sample(qCount)
 
       @survey = Survey.new
-      @ids.each do |id|
+      @p1_ids.each do |id|
          @survey.answers.build(:qid => id)
-      #qCount.times { @survey.answers.build(qid)}
       end
+      #@p2_ids.each do |id|
+      #   @survey.answers.build(:qid => id)
+      #qCount.times { @survey.answers.build(qid)}
+      #end
    end
 
    def create

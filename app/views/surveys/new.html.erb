@@ -4,39 +4,72 @@
    <%= f.label :level %>
    <%= f.select :level, options_for_select([['low', 1], ['mid',2],['high',3]]) %>
    <br>
-         <audio class="mejs-player">
-            <source type="audio/mpeg" src="/test.mp3" />
-            <source type="audio/ogg" src="/test.ogg" />
-         </audio>
    <%= f.fields_for :answers, @survey.answers do |builder| %>
-      <% qid = @ids.pop %>
+      <% qid = @p1_ids.pop %>
+      請問以下音樂片段A或B何者比較像是真人演出?:
+      <br>
+      <%= builder.hidden_field(:qid, :value => qid)%>
+      <br>
+      &nbsp;
+      <%= builder.radio_button :ans, "cub" %>
+      <%= builder.label "A" %>
+      <div style="display:inline-block">
+         <audio class="mejs-player ans-player" style="width:200px">
+            <source type="audio/mpeg" src="/<%= qid.to_s + "cub" %>.mp3" />
+            <source type="audio/ogg"  src="/<%= qid.to_s + "cub" %>.ogg" />
+         </audio>
+      </div>
+      <br>
+      &nbsp;
+      <%= builder.radio_button :ans, "hel" %>
+      <%= builder.label "B" %>
+      <div style="display:inline-block">
+         <audio class="mejs-player ans-player" style="width:200px">
+            <source type="audio/mpeg" src="/<%= qid.to_s + "hel" %>.mp3" />
+            <source type="audio/ogg"  src="/<%= qid.to_s + "hel" %>.ogg" />
+         </audio>
+      </div>
+         <br>
+      &nbsp;
+      <%= builder.radio_button :ans, "no" %>
+      <%= builder.label "無法判斷" %>
+      <br>
+      <br>
+   <% end %>
+
+   <%= f.fields_for :answers, @survey.answers do |builder| %>
+      <% qid = @p1_ids.pop %>
       請問以下音樂片段的「演奏風格」與A或B何者比較相近?:
       <br>
-         <audio class="mejs-player">
+         <audio class="mejs-player ques-player" style="width:250px">
             <source type="audio/mpeg" src="/<%= qid.to_s + "ref" %>.mp3" />
             <source type="audio/ogg"  src="/<%= qid.to_s + "ref" %>.ogg" />
          </audio>
       <%= builder.hidden_field(:qid, :value => qid)%>
       <br>
-      &nbsp 
+      &nbsp;
       <%= builder.radio_button :ans, "cub" %>
       <%= builder.label "A" %>
-         <audio class="mejs-player">
+      <div style="display:inline-block">
+         <audio class="mejs-player ans-player" style="width:200px">
             <source type="audio/mpeg" src="/<%= qid.to_s + "cub" %>.mp3" />
             <source type="audio/ogg"  src="/<%= qid.to_s + "cub" %>.ogg" />
          </audio>
+      </div>
       <br>
-      &nbsp 
+      &nbsp;
       <%= builder.radio_button :ans, "hel" %>
       <%= builder.label "B" %>
-         <audio class="mejs-player">
+      <div style="display:inline-block">
+         <audio class="mejs-player ans-player" style="width:200px">
             <source type="audio/mpeg" src="/<%= qid.to_s + "hel" %>.mp3" />
             <source type="audio/ogg"  src="/<%= qid.to_s + "hel" %>.ogg" />
          </audio>
-      <br>
-      &nbsp 
+      </div>
+         <br>
+      &nbsp;
       <%= builder.radio_button :ans, "no" %>
-      <%= builder.label "Don't know" %>
+      <%= builder.label "無法判斷" %>
       <br>
       <br>
    <% end %>
