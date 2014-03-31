@@ -1,12 +1,15 @@
 <% @surveys.each do |survey| %>
-   <ul>
-      <li><%=survey.level%></li>
-      <li><%=survey.instrument%></li>
-      <% survey.p1answers.each do |p1answer| %>
-         <ul>
-            <li><%=p1answer.qid%>:<%=p1answer.ans%></li>
-         </ul>
+   <table>
+      <tr>
+         <th>level</th>
+         <th>instrument</th>
+         <th>qid</th>
+         <th>answer</th>
+      </tr>
+      <% survey.p1answers.each do |answer| %>
+         <%= render "surveys/ansrow", :survey => survey, :answer => answer %>
       <% end %>
-   </ul>
+
+   </table>
 <% end %>
 
