@@ -1,6 +1,7 @@
 <% @surveys.each do |survey| %>
    <ul>
       <li><%=survey.level%></li>
+      <li><%=survey.instrument%></li>
       <% survey.p1answers.each do |p1answer| %>
          <ul>
             <li><%=p1answer.qid%>:<%=p1answer.ans%></li>

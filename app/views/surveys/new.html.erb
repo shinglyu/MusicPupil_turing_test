@@ -1,12 +1,22 @@
 <h1>電腦自動演奏實驗問卷</h1>
+<p>您好：<br>這份問卷是電腦自動演奏實驗的一部分，旨在研究聽眾對電腦自動演奏的效能評價。</p>
+<p>此份問卷共分兩個部份，第一部份有 <%= @p1_ids.length %> 題，第二部份有 <%= @p2_ids.length %> 題，<u>只需要大約 <%= (@p1_ids.length + @p2_ids.length) * 30 / 60 %> ~ <%= (@p1_ids.length + @p2_ids.length) * 60 / 60 %> 分鐘</u></p>
+<p>本問卷內容純粹用於學術用途，不會紀錄您的個人資料，請安心填寫。</p>
 
+<p>台大電機所 呂行 敬上</p>
+
+<!---------------------------------------->
 <h2>基本資料</h2>
 <%= form_for @survey,  url: surveys_path do |f| %>
-   <%= f.label :level %>
-   <%= f.select :level, options_for_select([['low', 1], ['mid',2],['high',3]]) %>
+   <%= f.label :level, "您的音樂程度："%>
+   <%= f.select :level, options_for_select([['沒有受過任何樂器或音樂訓練', 1], ['業餘演奏者',2],['音樂專業人士或音樂學生',3]]) %>
    <br>
+   <%= f.label :instrument, "(選填)您學過的樂器/時間："%>
+   <%= f.text_field :instrument, :placeholder => "範例:鋼琴10年、聲樂5年" %>
 
+<!---------------------------------------->
    <h2>Part 1</h2>
+   <h4>以下你會聽到兩段錄音A與B，其中一段是來自於<u>真人演奏</u>，另外一段是<u>電腦演奏</u>，請根據音樂的表現來判斷何者是<u>真人演出</u>：</h4>
    <%= f.fields_for :p1answers, @survey.p1answers do |builder| %>
       <% qid = @p1_ids.pop %>
       請問以下音樂片段A或B何者比較像是<b>真人演出</b>?:
@@ -34,7 +44,9 @@
       <br> <br> <br>
    <% end %>
 
+<!---------------------------------------->
    <h2>Part 2</h2>
+   <h4>以下你會聽到三段錄音，<u>範例</u>錄音與<u>A或B</u>其中一段錄音來自於同一位演奏者，另外一段則是來自另一位演奏者，請根據<u>演奏風格</u>判斷A或B何者與範例是來自同一個演奏者：</h4>
 
    <%= f.fields_for :p2answers, @survey.p2answers do |builder| %>
       <% qid = @p2_ids.pop %>
