@@ -1,77 +1,73 @@
-<h1>Test</h1>
+<h1>電腦自動演奏實驗問卷</h1>
 
+<h2>基本資料</h2>
 <%= form_for @survey,  url: surveys_path do |f| %>
    <%= f.label :level %>
    <%= f.select :level, options_for_select([['low', 1], ['mid',2],['high',3]]) %>
    <br>
-   <%= f.fields_for :answers, @survey.answers do |builder| %>
+
+   <h2>Part 1</h2>
+   <%= f.fields_for :p1answers, @survey.p1answers do |builder| %>
       <% qid = @p1_ids.pop %>
-      請問以下音樂片段A或B何者比較像是真人演出?:
+      請問以下音樂片段A或B何者比較像是<b>真人演出</b>?:
       <br>
       <%= builder.hidden_field(:qid, :value => qid)%>
-      <br>
-      &nbsp;
-      <%= builder.radio_button :ans, "cub" %>
-      <%= builder.label "A" %>
-      <div style="display:inline-block">
-         <audio class="mejs-player ans-player" style="width:200px">
-            <source type="audio/mpeg" src="/<%= qid.to_s + "cub" %>.mp3" />
-            <source type="audio/ogg"  src="/<%= qid.to_s + "cub" %>.ogg" />
-         </audio>
-      </div>
-      <br>
-      &nbsp;
-      <%= builder.radio_button :ans, "hel" %>
-      <%= builder.label "B" %>
-      <div style="display:inline-block">
-         <audio class="mejs-player ans-player" style="width:200px">
-            <source type="audio/mpeg" src="/<%= qid.to_s + "hel" %>.mp3" />
-            <source type="audio/ogg"  src="/<%= qid.to_s + "hel" %>.ogg" />
-         </audio>
-      </div>
-         <br>
+      <% if (rand(2) == 0) %>
+         <% @ans_value = "cub" %>
+         <% @ans_label = "A" %>
+         <%= render "surveys/option", :builder => builder, :qid => qid%>
+         <% @ans_value = "hel" %>
+         <% @ans_label = "B" %>
+         <%= render "surveys/option", :builder => builder, :qid => qid%>
+      <% else %>
+         <% @ans_value = "hel" %>
+         <% @ans_label = "A" %>
+         <%= render "surveys/option", :builder => builder, :qid => qid%>
+         <% @ans_value = "cub" %>
+         <% @ans_label = "B" %>
+         <%= render "surveys/option", :builder => builder, :qid => qid%>
+      <% end %>
+
       &nbsp;
       <%= builder.radio_button :ans, "no" %>
       <%= builder.label "無法判斷" %>
-      <br>
-      <br>
+      <br> <br> <br>
    <% end %>
 
-   <%= f.fields_for :answers, @survey.answers do |builder| %>
-      <% qid = @p1_ids.pop %>
-      請問以下音樂片段的「演奏風格」與A或B何者比較相近?:
+   <h2>Part 2</h2>
+
+   <%= f.fields_for :p2answers, @survey.p2answers do |builder| %>
+      <% qid = @p2_ids.pop %>
+      請問以下<u>範例</u>的<b>演奏風格</b>與A或B何者比較相近?:
       <br>
+      <label>範例</label>
+      <div style="display:inline-block">
          <audio class="mejs-player ques-player" style="width:250px">
             <source type="audio/mpeg" src="/<%= qid.to_s + "ref" %>.mp3" />
             <source type="audio/ogg"  src="/<%= qid.to_s + "ref" %>.ogg" />
          </audio>
+      </div>
       <%= builder.hidden_field(:qid, :value => qid)%>
       <br>
-      &nbsp;
-      <%= builder.radio_button :ans, "cub" %>
-      <%= builder.label "A" %>
-      <div style="display:inline-block">
-         <audio class="mejs-player ans-player" style="width:200px">
-            <source type="audio/mpeg" src="/<%= qid.to_s + "cub" %>.mp3" />
-            <source type="audio/ogg"  src="/<%= qid.to_s + "cub" %>.ogg" />
-         </audio>
-      </div>
-      <br>
-      &nbsp;
-      <%= builder.radio_button :ans, "hel" %>
-      <%= builder.label "B" %>
-      <div style="display:inline-block">
-         <audio class="mejs-player ans-player" style="width:200px">
-            <source type="audio/mpeg" src="/<%= qid.to_s + "hel" %>.mp3" />
-            <source type="audio/ogg"  src="/<%= qid.to_s + "hel" %>.ogg" />
-         </audio>
-      </div>
-         <br>
+      <% if (rand(2) == 0) %>
+         <% @ans_value = "cub" %>
+         <% @ans_label = "A" %>
+         <%= render "surveys/option", :builder => builder, :qid => qid%>
+         <% @ans_value = "hel" %>
+         <% @ans_label = "B" %>
+         <%= render "surveys/option", :builder => builder, :qid => qid%>
+      <% else %>
+         <% @ans_value = "hel" %>
+         <% @ans_label = "A" %>
+         <%= render "surveys/option", :builder => builder, :qid => qid%>
+         <% @ans_value = "cub" %>
+         <% @ans_label = "B" %>
+         <%= render "surveys/option", :builder => builder, :qid => qid%>
+      <% end %>
       &nbsp;
       <%= builder.radio_button :ans, "no" %>
       <%= builder.label "無法判斷" %>
-      <br>
-      <br>
+      <br> <br> <br>
    <% end %>
-   <%= f.submit "Send" %>
+   <%= f.submit "送出答案" %>
 <% end %>

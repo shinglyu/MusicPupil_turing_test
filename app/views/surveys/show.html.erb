@@ -1,8 +1,16 @@
 <h1>Submitted answers</h1>
 <%= @survey.level %>
+<p>part 1 </p>
 <ul>
-<% for ans in @survey.answers %>
+<% for ans in @survey.p1answers %>
    <li><%= ans.qid %> : <%= ans.ans %></li>
 </ul>
+<% end %>
+<p>part 2 </p>
+<ul>
+<% for ans in @survey.p2answers %>
+   <li><%= ans.qid %> : <%= ans.ans %></li>
+</ul>
+<% end %>
 
 

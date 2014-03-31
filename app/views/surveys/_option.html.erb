@@ -1,0 +1,10 @@
+      &nbsp;
+      <%= builder.radio_button :ans, @ans_value %>
+      <%= builder.label @ans_label %>
+      <div style="display:inline-block">
+         <audio class="mejs-player ans-player" style="width:200px">
+            <source type="audio/mpeg" src="/<%= qid.to_s + @ans_value %>.mp3" />
+            <source type="audio/ogg"  src="/<%= qid.to_s + @ans_value %>.ogg" />
+         </audio>
+      </div>
+      <br>

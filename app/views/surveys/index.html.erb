@@ -1,9 +1,9 @@
-<%= @surveys.each do |survey| %>
+<% @surveys.each do |survey| %>
    <ul>
       <li><%=survey.level%></li>
-      <%= survey.answers.each do |answer| %>
+      <% survey.p1answers.each do |p1answer| %>
          <ul>
-            <li><%=answer.qid%>:<%=answer.ans%></li>
+            <li><%=p1answer.qid%>:<%=p1answer.ans%></li>
          </ul>
       <% end %>
    </ul>
