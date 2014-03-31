@@ -2,3 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.mejs-container .mejs-controls {
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(200, 200, 200, 0.7)) repeat scroll 0% 0% transparent;
+}
+
+input[type="submit"]{
+   padding:20px;
+   color:red;
+}
+
