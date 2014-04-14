@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+   layout "application"
    before_filter:authenticate, :only => [:index]
 
    def new
