@@ -13,3 +13,20 @@
    </table>
 <% end %>
 
+   <table>
+      <tr>
+         <th>part</th>
+         <th>comment</th>
+      </tr>
+      <% @surveys.each do |survey| %>
+         <tr>
+            <td>1</td>
+            <td><%= survey.comment1 %></td>
+            <td>2</td>
+            <td><%= survey.comment2 %></td>
+            <td>3</td>
+            <td><%= survey.comment3 %></td>
+         </tr>
+      <% end %>
+
+   </table>

@@ -43,6 +43,10 @@
       <%= builder.label "無法判斷" %>
       <br> <br> <br>
    <% end %>
+   <%= f.label :comment1, "\(選填\)對於Part 1 的問題，請問您的判斷準則是?" %><br>
+   <%= f.text_area :comment1 %>
+
+
 
 <!--=====================================-->
    <h2>Part 2</h2>
@@ -73,6 +77,8 @@
       <%= builder.label "無法判斷" %>
       <br> <br> <br>
    <% end %>
+   <%= f.label :comment2, "\(選填\)對於Part 2 的問題，請問您的判斷準則是?" %><br>
+   <%= f.text_area :comment2 %>
 
 <!--=====================================-->
    <h2>Part 3</h2>
@@ -111,5 +117,7 @@
       <%= builder.label "無法判斷" %>
       <br> <br> <br>
    <% end %>
+   <%= f.label :comment3, "\(選填\)對於Part 3 的問題，請問您的判斷準則是?" %><br>
+   <%= f.text_area :comment3 %>
    <%= f.submit "送出答案" %>
 <% end %>

@@ -24,7 +24,7 @@ class SurveysController < ApplicationController
    end
 
    def create
-      attrs =  params.require(:survey).permit(:level, :instrument, p1answers_attributes: [:qid, :ans], p2answers_attributes: [:qid, :ans], p3answers_attributes: [:qid, :ans])
+      attrs =  params.require(:survey).permit(:level, :instrument, :comment1,:comment2, :comment3, p1answers_attributes: [:qid, :ans], p2answers_attributes: [:qid, :ans], p3answers_attributes: [:qid, :ans])
       @survey = Survey.new(attrs)
       #@survey.p1answers.build(params[:survey][:p1answers])
       #@survey.p2answers.build(params[:survey][:p2answers])
