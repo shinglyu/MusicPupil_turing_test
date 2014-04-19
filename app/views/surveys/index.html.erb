@@ -4,7 +4,8 @@
          <th>level</th>
          <th>instrument</th>
          <th>qid</th>
-         <th>answer</th>
+         <th>type</th>
+         <th>vote</th>
       </tr>
       <% survey.p1answers.each do |answer| %>
          <%= render "surveys/ansrow", :survey => survey, :answer => answer %>

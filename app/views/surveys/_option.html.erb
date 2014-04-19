@@ -1,10 +1,13 @@
       &nbsp;
-      <%= builder.radio_button :ans, @ans_value, :required => true %>
-      <%= builder.label @ans_label %>
       <div style="display:inline-block">
          <audio class="mejs-player ans-player" style="width:200px">
-            <source type="audio/mpeg" src="/<%= qid.to_s + @ans_value %>.mp3" />
-            <source type="audio/ogg"  src="/<%= qid.to_s + @ans_value %>.ogg" />
+            <source type="audio/mpeg" src="/<%= qid.to_s.rjust(4,'0') + '_' + @ans_value %>.mp3" />
          </audio>
       </div>
+      <%= builder.label "難聽" %>
+      <% for i in (1..5) %>
+      <%= builder.radio_button :vote, i , :required => true %>
+      <%= builder.label i %>
+      <% end %>
+      <%= builder.label "好聽" %>
       <br>
