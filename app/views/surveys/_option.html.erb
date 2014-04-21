@@ -5,10 +5,10 @@
          </audio>
       </div>
       <br>
-      <%= builder.label "難聽" %>
+      <%= builder.label "難聽 bad" %>
       <% for i in (1..5) %>
       <%= builder.radio_button :vote, i , :required => true %>
       <%= builder.label i %>
       <% end %>
-      <%= builder.label "好聽" %>
+      <%= builder.label "好聽 good" %>
       <br>

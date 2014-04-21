@@ -1,19 +1,23 @@
-<h1>電腦自動演奏實驗問卷</h1>
-<p>您好：<br>這份問卷是電腦自動演奏實驗的一部分，旨在研究聽眾對電腦自動演奏的效能評價。</p>
+<h1>電腦自動演奏實驗問卷 Computer Automatic Expressive Performance Experiment Questionnaire</h1>
+<p>您好：<br>這份問卷旨在研究聽眾對電腦自動演奏的效能評價。</p>
+<p>Dear participant：<br>This questionnaire is designed to evaluate the performance of a computer automatic expressive performance system.</p>
 <p>此份問卷共 <%= @p1_ids.length %> 題，<u>只需要大約 <%= (@p1_ids.length) * 30 / 60 %> 分鐘</u></p>
+<p>There are <%= @p1_ids.length %> questions in total，<u>it only takes about <%= (@p1_ids.length) * 30 / 60 %> minutes.</u></p>
 <p>本問卷內容純粹用於學術用途，完全匿名，請安心填寫。</p>
+<p>Your answer will be totally anonymous and will only be used in academia research.</p>
 
 <p>台大電機所 呂行(<a href="mailto://shing.lyu@gmail.com">shing.lyu@gmail.com</a>) 敬上</p>
+<p>Best Regards, <br>Shing Lyu(<a href="mailto://shing.lyu@gmail.com">shing.lyu@gmail.com</a>)</p>
 <p></p>
 
 <!--=====================================-->
-<h2>基本資料</h2>
+<h2>基本資料 Personal Background</h2>
 <%= form_for @survey,  url: surveys_path do |f| %>
-   <%= f.label :level, "您的音樂程度："%>
-   <%= f.select :level, options_for_select([['沒有任何樂器或音樂背景', 1], ['業餘演奏者',2],['音樂專業人士或音樂系所師生',3]]) %>
+   <%= f.label :level, "您的音樂程度 Your musical proficiency："%><br>
+   <%= f.select :level, options_for_select([['沒有任何樂器或音樂背景 Never learned any musical instrument, no musical background', 1], ['業餘演奏者 Amateur musical instrument player',2],['音樂專業人士或音樂系所師生 Professional musician, musicologist or student majored in music',3]]) %>
    <br>
-   <%= f.label :instrument, "(選填)您學過的樂器/時間："%>
-   <%= f.text_field :instrument, :placeholder => "範例:鋼琴10年、聲樂5年" %>
+   <%= f.label :instrument, "(選填)您學過的樂器/時間 (Optional) How long have you learned any musical instrument："%><br>
+   <%= f.text_field :instrument, :placeholder => "範例:鋼琴10年 e.g. Piano for 10 years" %>
 
 <!--=====================================-->
    <h4>以下你會聽到一些音樂片段，請根據以下標準給每段音樂做綜合評分：</h4>
@@ -23,6 +27,18 @@
       <li>音樂性：音色、斷句、流暢、情感是否明顯</li>
       <li>表現性：彈性速度、音色對比是否明顯(對比於生硬死板的演出)</li>
    </ul>
+   
+   <h4>You will hear some music segments, please give an overall rating for each one by the following criteria：</h4>
+   <ul>
+      <li>Technical control – if a performance sounds like it is technically skilled thus performed with accurate and secure notes, rhythms, tempo and articulation.</li>
+      <li>Humanness – if the performance sounds like a human was playing it.</li>
+      <li>Musicality – how musical the performance is in terms of tone and color, phrasing, flow, mood and emotions</li>
+      <li>Expressive variation – how much expressive variation (versus deadpan) there is in the performance.</li>
+   </ul>
+
+   <p>如果您按下題目中的播放器無法聽到聲音，請試著改用電腦版的 Firefox 或 Google Chrome</p>
+   <p>If you can't hear any sound from the player in the question，please try switching to Firefox or Google Chrome for Desktop.</p>
+
    <% counter = 0 %>
    <%= f.fields_for :p1answers, @survey.p1answers do |builder| %>
       <% counter = counter + 1 %>
@@ -36,9 +52,9 @@
 
       <br> <br> 
    <% end %>
-   <%= f.label :comment1, "\(選填\)請問您覺得難聽的片段有何缺點?" %><br>
+   <%= f.label :comment1, "\(選填\)請問您覺得難聽的片段有何缺點? (optional) What's the shortcoming of the segments that sounds bad?" %><br>
    <%= f.text_area :comment1 %>
    <br>
 
-   <%= f.submit "送出答案" %>
+   <%= f.submit "送出答案 Submit" %>
 <% end %>
