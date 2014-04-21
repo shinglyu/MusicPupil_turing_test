@@ -3,13 +3,13 @@ class SurveysController < ApplicationController
    before_filter:authenticate, :only => [:index]
 
    def new
-      p1TotalQCount= 80
-      p2TotalQCount= 20
-      p3TotalQCount= 20
-      qCount = 5
+      p1TotalQCount= 1518 
+      #p2TotalQCount= 20
+      #p3TotalQCount= 20
+      qCount = 10
       @p1_ids = (1..p1TotalQCount).to_a.sample(qCount*2) #0~1000 reserved fo part 1
-      @p2_ids = (1001..1000+p2TotalQCount).to_a.sample(qCount)
-      @p3_ids = (2001..2000+p3TotalQCount).to_a.sample(qCount)
+      #@p2_ids = (1001..1000+p2TotalQCount).to_a.sample(qCount)
+      #@p3_ids = (2001..2000+p3TotalQCount).to_a.sample(qCount)
 
       @p1_ans = Array.new()
       for i in 1..qCount
@@ -22,16 +22,17 @@ class SurveysController < ApplicationController
       @p1_ids.each do |id|
          @survey.p1answers.build(:qid => id)
       end
-      @p2_ids.each do |id|
-         @survey.p2answers.build(:qid => id)
-      end
-      @p3_ids.each do |id|
-         @survey.p3answers.build(:qid => id)
-      end
+      #@p2_ids.each do |id|
+      #   @survey.p2answers.build(:qid => id)
+      #end
+      #@p3_ids.each do |id|
+      #   @survey.p3answers.build(:qid => id)
+      #end
    end
 
    def create
-      attrs =  params.require(:survey).permit(:level, :instrument, :comment1,:comment2, :comment3, p1answers_attributes: [:qid, :ans, :vote], p2answers_attributes: [:qid, :ans], p3answers_attributes: [:qid, :ans])
+      #attrs =  params.require(:survey).permit(:level, :instrument, :comment1,:comment2, :comment3, p1answers_attributes: [:qid, :ans, :vote], p2answers_attributes: [:qid, :ans], p3answers_attributes: [:qid, :ans])
+      attrs =  params.require(:survey).permit(:level, :instrument, :comment1,p1answers_attributes: [:qid, :ans, :vote])
       @survey = Survey.new(attrs)
       #@survey.p1answers.build(params[:survey][:p1answers])
       #@survey.p2answers.build(params[:survey][:p2answers])

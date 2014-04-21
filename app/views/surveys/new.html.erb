@@ -1,37 +1,44 @@
 <h1>電腦自動演奏實驗問卷</h1>
 <p>您好：<br>這份問卷是電腦自動演奏實驗的一部分，旨在研究聽眾對電腦自動演奏的效能評價。</p>
-<p>此份問卷共分三個部份，第一部份 <%= @p1_ids.length %> 題，第二部份 <%= @p2_ids.length %> 題，第三部份 <%= @p3_ids.length %> 題，<u>只需要大約 <%= (@p1_ids.length + @p2_ids.length + @p3_ids.length) * 25 / 60 %> ~ <%= (@p1_ids.length + @p2_ids.length + @p3_ids.length) * 50 / 60 %> 分鐘</u></p>
-<p>本問卷內容純粹用於學術用途，不會紀錄您的個人資料，請安心填寫。</p>
+<p>此份問卷共 <%= @p1_ids.length %> 題，<u>只需要大約 <%= (@p1_ids.length) * 30 / 60 %> 分鐘</u></p>
+<p>本問卷內容純粹用於學術用途，完全匿名，請安心填寫。</p>
 
-<p>台大電機所 呂行 敬上</p>
+<p>台大電機所 呂行(<a href="mailto://shing.lyu@gmail.com">shing.lyu@gmail.com</a>) 敬上</p>
+<p></p>
 
 <!--=====================================-->
 <h2>基本資料</h2>
 <%= form_for @survey,  url: surveys_path do |f| %>
    <%= f.label :level, "您的音樂程度："%>
-   <%= f.select :level, options_for_select([['沒有受過任何樂器或音樂訓練', 1], ['業餘演奏者',2],['音樂專業人士或音樂學生',3]]) %>
+   <%= f.select :level, options_for_select([['沒有任何樂器或音樂背景', 1], ['業餘演奏者',2],['音樂專業人士或音樂系所師生',3]]) %>
    <br>
    <%= f.label :instrument, "(選填)您學過的樂器/時間："%>
    <%= f.text_field :instrument, :placeholder => "範例:鋼琴10年、聲樂5年" %>
 
 <!--=====================================-->
-   <h2>Part 1</h2>
-   <h4>以下你會聽到兩段錄音A與B，其中一段是來自於<u>真人演奏</u>，另外一段是<u>電腦演奏</u>，請根據音樂的表現來判斷何者是<u>真人演出</u>：</h4>
+   <h4>以下你會聽到一些音樂片段，請根據以下標準給每段音樂做綜合評分：</h4>
+   <ul>
+      <li>樂器技巧：音準、節奏、速度是否展現出高度演奏技巧</li>
+      <li>人性化：是否聽起來像真人演出(對比於機器人演奏)</li>
+      <li>音樂性：音色、斷句、流暢、情感是否明顯</li>
+      <li>表現性：彈性速度、音色對比是否明顯(對比於生硬死板的演出)</li>
+   </ul>
+   <% counter = 0 %>
    <%= f.fields_for :p1answers, @survey.p1answers do |builder| %>
+      <% counter = counter + 1 %>
+      <%= counter.to_s + ". " %>
+
       <% qid = @p1_ids.pop %>
       <% @ans_value = @p1_ans.pop %>
-      請問以下音樂片段A或B何者比較像是<b>真人演出</b>?:
-      <br>
       <%= builder.hidden_field(:qid, :value => qid)%>
       <%= builder.hidden_field(:ans, :value => @ans_value)%>
       <%= render "surveys/option", :builder => builder, :qid => qid%>
 
-      <br> <br> <br>
+      <br> <br> 
    <% end %>
-   <%= f.label :comment1, "\(選填\)對於Part 1 的問題，請問您的判斷準則是?" %><br>
+   <%= f.label :comment1, "\(選填\)請問您覺得難聽的片段有何缺點?" %><br>
    <%= f.text_area :comment1 %>
-
-
+   <br>
 
    <%= f.submit "送出答案" %>
 <% end %>

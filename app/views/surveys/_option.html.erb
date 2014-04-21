@@ -4,6 +4,7 @@
             <source type="audio/mpeg" src="/<%= qid.to_s.rjust(4,'0') + '_' + @ans_value %>.mp3" />
          </audio>
       </div>
+      <br>
       <%= builder.label "難聽" %>
       <% for i in (1..5) %>
       <%= builder.radio_button :vote, i , :required => true %>
