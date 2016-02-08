@@ -14,7 +14,8 @@ class SurveysController < ApplicationController
       @p1_ans = Array.new()
       for i in 1..qCount
          @p1_ans.push 'hel'
-         @p1_ans.push 'cub'
+         #@p1_ans.push 'cub'
+         @p1_ans.push 'mid'
       end
       @p1_ans.shuffle!
 
